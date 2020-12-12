@@ -1,0 +1,59 @@
+const HtmlPlugin  = require("html-webpack-plugin");
+const path = require("path");
+const MiniCssPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+
+module.exports = {
+    output:{
+        path: path.resolve(__dirname,"build"),
+        filename: "bundle.js"
+    },
+    module:{
+        rules:[
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node-modules/,
+                use:[
+                    {
+                        loader: "babel-loader"
+                    }
+                ]
+            },
+            {
+                test:/\.html$/,
+                use:[{
+                    loader: "html-loader"
+                }]
+            },
+            {
+                test:/\.(png|jpe?g|gif)$/i,
+                use:[{
+                        loader: "file-loader"
+                    }
+                ]
+            },
+            {
+                test:/\.s[ac]ss$/i,
+                use:[MiniCssPlugin.loader,"css-loader","sass-loader","postcss-loader"]
+            }
+        ]
+    },
+    plugins:[
+        new HtmlPlugin({
+            filename:"index.html",
+            template:"./src/index.html"
+        }),
+        new MiniCssPlugin(),
+        new webpack.DefinePlugin({
+            "process.env" : {
+                "NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+            }
+        })
+    ],
+    
+    devServer:{
+        historyApiFallback: true, //whatever the path, it redirects to index.html
+        port:5000
+    },
+    
+}
