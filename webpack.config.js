@@ -4,10 +4,27 @@ const MiniCssPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 module.exports = {
+    mode: 'development',
+    entry: {
+        index: './src/index.js',
+    },
     output:{
         path: path.resolve(__dirname,"build"),
-        filename: "bundle.js"
+        filename: "[name].bundle.js"
     },
+    optimization: {
+        runtimeChunk: 'single',
+      },
+    resolve: {
+        fallback: {
+          fs: false,
+          path:false,
+          buffer: require.resolve("buffer/"),
+          util: require.resolve("util/"),
+          stream: require.resolve("stream-browserify"),
+          crypto: require.resolve("crypto-browserify")
+        }
+      },
     module:{
         rules:[
             {
@@ -44,11 +61,9 @@ module.exports = {
             template:"./src/index.html"
         }),
         new MiniCssPlugin(),
-        new webpack.DefinePlugin({
-            "process.env" : {
-                "NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-            }
-        })
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+          }),
     ],
     
     devServer:{

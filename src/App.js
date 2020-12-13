@@ -11,7 +11,9 @@ import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 //import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from './components/NavigationBar/navigationDrawer';
-require("dotenv").config();
+//require("dotenv").config();
+/*const dotenv = process.env.REACT_APP_API_KEY;
+//console.log(dotenv);
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -29,11 +31,11 @@ if (localStorage.jwtToken) {
     // Redirect to login
     window.location.href = "./login";
   }
-}
+}*/
 
 class App extends Component {
 
-    componentDidMount(){
+    /*componentDidMount(){
      let  userDetails = {userDetails:[]};
   if(localStorage.getItem('userDetails') === null 
   || localStorage.getItem('userDetails') === 'undefined'){
@@ -41,7 +43,7 @@ class App extends Component {
   }else{
     console.log('userdetails item already exist')
   }    
-    }
+    }*/
  
  
    render() {
@@ -51,10 +53,10 @@ class App extends Component {
            <div className="App">
              <Navbar />         
              <Route exact path="#"  />
-             <Route exact path="#"  />
-             <Switch>
-               <PrivateRoute exact path="#"  />
-             </Switch>
+            <Route exact path="#" />
+            <Switch>
+              <PrivateRoute exact path="#" />
+            </Switch>
            </div>
          </Router>
        </Provider>
