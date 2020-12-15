@@ -50,8 +50,8 @@ module.exports = {
                 ]
             },
             {
-                test:/\.s[ac]ss$/i,
-                use:[MiniCssPlugin.loader,"css-loader","sass-loader","postcss-loader"]
+                test:/\.css$/i,
+                use:[MiniCssPlugin.loader,"css-loader","postcss-loader"]
             }
         ]
     },
@@ -61,14 +61,17 @@ module.exports = {
             template:"./src/index.html"
         }),
         new MiniCssPlugin(),
+        
         new webpack.ProvidePlugin({
             process: 'process/browser',
           }),
+          new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+          })
     ],
     
     devServer:{
         historyApiFallback: true, //whatever the path, it redirects to index.html
-        port:5000
     },
     
 }
