@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import jwt_decode from 'jwt-decode'
 import Button from '@material-ui/core/Button';
 
-import { logoutUser } from "../../actions/authActions";
+import { logoutUser } from "../actions/authActions";
 import RegisterDetailsForm from  "../RegisterDetailsForm/"
 class Dashboard extends Component {
 
