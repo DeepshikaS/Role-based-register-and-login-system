@@ -28,8 +28,8 @@ if (localStorage.jwtToken) {
 class App extends Component {
   componentDidMount(){
     let  userDetails = {userDetails:[]};
-      if(localStorage.getItem('userDetails.userDetails') === null 
-        || localStorage.getItem('userDetails.userDetails') === 'undefined'){
+      if(localStorage.getItem('userDetails') === null 
+        || localStorage.getItem('userDetails') === 'undefined'){
           localStorage.setItem('userDetails', JSON.stringify(userDetails));
       }else{
         console.log('userdetails item already exist')
